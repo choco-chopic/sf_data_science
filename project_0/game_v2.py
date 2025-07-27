@@ -1,5 +1,8 @@
 import numpy as np
 
+MAX_RANDOM_VALUE = 100
+MIN_RANDOM_VALUE = 1
+
 def random_predict(number:int=1) -> int:
     """Рандомно угадываем число
 
@@ -40,6 +43,35 @@ def score_game(random_predict) -> int:
 
     print(f'Ваш алгоритм угадывает число в среднем за: {score} попыток')
     return(score)
+
+
+
+def game_core_v3(number: int = 1) -> int:
+    """
+    Args:
+        number (int, optional): Загаданное число. Defaults to 1.
+
+    Returns:
+        int: Число попыток
+    """
+    # Ваш код начинается здесь
+
+    count = 0
+    max_value = MAX_RANDOM_VALUE
+    min_value = MIN_RANDOM_VALUE
+    predict = (max_value + min_value) // 2
+        
+    while number != predict:
+        count += 1
+        if number > predict:
+            min_value = predict + 1
+        elif number < predict:
+            max_value = predict - 1
+        predict = (max_value + min_value) // 2
+    
+    # Ваш код заканчивается здесь
+
+    return count
 
 # RUN
 if __name__ == '__main__':
